@@ -1,5 +1,4 @@
 #include "aiem.h"
-#include "../alfresco/include/StatArray.h"
 StatArray* RunStats;
 int main(int argc, char* argv[]){
 	RunStats = new StatArray();
