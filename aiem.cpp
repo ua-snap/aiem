@@ -1,6 +1,7 @@
 #include "aiem.h"
 StatArray* RunStats;
 int main(int argc, char* argv[]){
+	Regioner *region = new Regioner();
 	RunStats = new StatArray();
 	GIPL* xyz = new GIPL();
 	int startYear = 1901;
