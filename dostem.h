@@ -1,6 +1,6 @@
 #ifndef TEM_H
 #define TEM_H
 
-#include "Regioner.h"
+#include "Runner.h"
 
 #endif
