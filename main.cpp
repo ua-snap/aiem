@@ -1,6 +1,12 @@
 #include "aiem.h"
 StatArray* RunStats;
+ArgHandler* args = new ArgHandler();
 int main(int argc, char* argv[]){
+	args->parse(argc, argv);
+	if (args->getHelp()){
+		args->showHelp();
+		return 0;
+	}
 	int startYear = 1901;
 	int transitionYear = 2009;
 	int endYear = 2099;
@@ -20,14 +26,12 @@ int main(int argc, char* argv[]){
 	_simulation->setIsStopped(false);
 	srand(1234763211);
 	long repRand = rand();
-	_simulation->setup("/home/apbennett/aiem/", "SPINUP.fif", "/home/apbennett/aiem", repRand);
+	_simulation->setup("/home/apbennett/aiem/", args->getFifName(), "/home/apbennett/aiem", repRand);
 	RunStats->setFirstYear(_simulation->fif().nGet("FirstYear"));
-	//_simulation->runRep(1, _simulation->fif().nGet("FirstYear")); 
-	for (int i = 1860; i <= 1900; i++){
-		_simulation->runOneYear(0,i);
+	for (int i = _simulation->fif().nGet("FirstYear"); i <= _simulation->fif().nGet("LastYear"); i++){
+		//_simulation->runOneYear(0,i);
 		std::cout << "Year " << i << " Complete\n";
 	}
-	std::cout << "1862\n";
 	//_simulation->runEnd();
 	_simulation->clear();
 	delete _simulation; _simulation = 0;

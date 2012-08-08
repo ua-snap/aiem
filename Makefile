@@ -17,9 +17,9 @@ INCLUDES=-I/home/apbennett/alfresco/include \
 	-I/home/apbennett/dvm-dos-tem/src/util \
 	-I/home/apbennett/dvm-dos-tem/src/vegetation
 LDFLAGS=-L/home/apbennett/lib -L/home/apbennett/dvm-dos-tem -L/home/apbennett/gipl
-LIBS=-lFrescoCustom -lFrescoFoundation -lPocoFoundation -lPocoXML -lPocoNet -lgdal -lTEM
+LIBS=-lFrescoCustom -lFrescoFoundation -lPocoFoundation -lPocoXML -lPocoNet -lgdal -lTEM -lboost_system -lboost_filesystem -lboost_program_options
 EXEC=aiem
-SRC=/home/apbennett/alfresco/src/StatArray.cpp /home/apbennett/alfresco/src/StatFile.cpp aiem.cpp main.cpp
+SRC=/home/apbennett/alfresco/src/StatArray.cpp /home/apbennett/alfresco/src/StatFile.cpp aiem.cpp ArgHandler.cpp main.cpp
 all:
 	$(CC) $(INCLUDES) $(SRC) -o $(EXEC) $(LDFLAGS) $(LIBS)
 clean:
