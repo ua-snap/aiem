@@ -1,7 +1,14 @@
 #include "aiem.h"
+
 StatArray* RunStats;
 ArgHandler* args = new ArgHandler();
+AIEM* aiem = new AIEM();
 int main(int argc, char* argv[]){
+	AIEM* aiem = new AIEM();
+	aiem->initialize();
+
+	return 0;
+
 	args->parse(argc, argv);
 	if (args->getHelp()){
 		args->showHelp();

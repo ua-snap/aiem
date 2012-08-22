@@ -9,7 +9,14 @@
 class AIEM{
 	public:
 		AIEM();
+		void initialize();
+	
 		int** fireSeverity;
+		int** vegetationType;
+		int** timeSinceLastFire;
+
+		int domainWidth;
+		int domainHeight;
 };
 
 #endif
