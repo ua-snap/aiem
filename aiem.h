@@ -1,15 +1,11 @@
 #ifndef AIEM_H
 #define AIEM_H
-#include "ArgHandler.h"
-#include "alfresco.h"
-//#include "GIPL2.h"
-#include "dostem.h"
-#define AIEM_MODEL
 
-class AIEM{
+class AIEM {
 	public:
 		AIEM();
 		void initialize();
+		void clearCells();
 	
 		int** fireSeverity;
 		int** vegetationType;

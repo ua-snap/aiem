@@ -1,5 +1,6 @@
 CC=g++
-INCLUDES=-I/home/apbennett/alfresco/include \
+INCLUDES= -I/home/apbennett/aiem \
+	-I/home/apbennett/alfresco/include \
 	-I/home/apbennett/gipl \
 	-I/usr/include/gdal \
 	-I/home/apbennett/dvm-dos-tem/src \

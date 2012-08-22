@@ -19,3 +19,12 @@ void AIEM::initialize(){
 		}
 	}
 }
+void AIEM::clearCells(){
+	for (int i = 0; i < domainWidth; i++){
+		for (int j = 0; j < domainHeight; j++){
+			fireSeverity[i][j] = 0;
+			vegetationType[i][j] = 0;
+			timeSinceLastFire[i][j] = 0;
+		}
+	}
+}

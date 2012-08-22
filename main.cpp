@@ -1,13 +1,15 @@
+#include "ArgHandler.h"
 #include "aiem.h"
+#include "alfresco.h"
+//#include "GIPL2.h"
+#include "dostem.h"
 
 StatArray* RunStats;
 ArgHandler* args = new ArgHandler();
-AIEM* aiem = new AIEM();
+AIEM* aiem;
 int main(int argc, char* argv[]){
-	AIEM* aiem = new AIEM();
+	aiem = new AIEM();
 	aiem->initialize();
-
-	return 0;
 
 	args->parse(argc, argv);
 	if (args->getHelp()){
@@ -36,14 +38,24 @@ int main(int argc, char* argv[]){
 	_simulation->setup("/home/apbennett/aiem/", args->getFifName(), "/home/apbennett/aiem", repRand);
 	RunStats->setFirstYear(_simulation->fif().nGet("FirstYear"));
 	for (int i = _simulation->fif().nGet("FirstYear"); i <= _simulation->fif().nGet("LastYear"); i++){
-		//_simulation->runOneYear(0,i);
+		_simulation->runOneYear(0,i);
 		std::cout << "Year " << i << " Complete\n";
+		for (int j = 0; j < 4000; j++){
+			for (int k = 0; k < 2000; k++){
+				if (aiem->fireSeverity[j][k] > 0){
+					std::cout << "Cell[" << j << "][" << k << "] = " << aiem->fireSeverity[j][k] << "\n";
+				}
+			}
+		}
+		aiem->clearCells();
 	}
 	//_simulation->runEnd();
 	_simulation->clear();
 	delete _simulation; _simulation = 0;
 	std::cout << "Rep " << 0 << " of " << 0 << " complete" << std::endl;
 	RunStats->writeStats();
+
+	return 0;
 
 	/* TEM */	
 	time_t stime;

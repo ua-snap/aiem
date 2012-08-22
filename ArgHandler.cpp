@@ -26,7 +26,7 @@ void ArgHandler::parse(int argc, char** argv){
 		debug = true;
 	}
 	if (varmap.count("fif")){
-        	fifFile = varmap["alfresco-fif"].as<string>();
+        	fifFile = varmap["fif"].as<string>();
 	}
 }
 string ArgHandler::getFifName(){
