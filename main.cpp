@@ -37,17 +37,21 @@ int main(int argc, char* argv[]){
 	long repRand = rand();
 	_simulation->setup("/home/apbennett/aiem/", args->getFifName(), "/home/apbennett/aiem", repRand);
 	RunStats->setFirstYear(_simulation->fif().nGet("FirstYear"));
+	int fireCounter;
 	for (int i = _simulation->fif().nGet("FirstYear"); i <= _simulation->fif().nGet("LastYear"); i++){
 		_simulation->runOneYear(0,i);
 		std::cout << "Year " << i << " Complete\n";
+		fireCounter = 0;
 		for (int j = 0; j < 4000; j++){
 			for (int k = 0; k < 2000; k++){
 				if (aiem->fireSeverity[j][k] > 0){
-					std::cout << "Cell[" << j << "][" << k << "] = " << aiem->fireSeverity[j][k] << "\n";
+					//std::cout << "Cell[" << j << "][" << k << "] = " << aiem->fireSeverity[j][k] << "\n";
+					fireCounter++;
 				}
 			}
 		}
 		aiem->clearCells();
+		std::cout << "Pixels Burned: " << fireCounter << "\n";
 	}
 	//_simulation->runEnd();
 	_simulation->clear();
