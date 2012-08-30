@@ -28,3 +28,12 @@ void AIEM::clearCells(){
 		}
 	}
 }
+int AIEM::getFireSeverity(int x, int y){
+	return fireSeverity[x][y];	
+}
+int AIEM::getVegetationType(int x, int y){
+	return vegetationType[x][y];	
+}
+int AIEM::getTimeSinceLastFire(int x, int y){
+	return timeSinceLastFire[x][y];	
+}
