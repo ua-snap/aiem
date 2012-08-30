@@ -13,6 +13,7 @@ class AIEM {
 		int getVegetationType(int x, int y);
 		int getTimeSinceLastFire(int x, int y);
 
+
 		/* Internal variables, data structures, etc. */	
 		int domainWidth;
 		int domainHeight;
@@ -21,6 +22,10 @@ class AIEM {
 		int** fireSeverity;
 		int** vegetationType;
 		int** timeSinceLastFire;
+
+		int setFireSeverity(int x, int y, int v);
+		int setVegetationType(int x, int y, int v);
+		int setTimeSinceLastFire(int x, int y, int v);
 
 		/* GIPL set variables */
 

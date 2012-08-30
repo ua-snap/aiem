@@ -37,3 +37,12 @@ int AIEM::getVegetationType(int x, int y){
 int AIEM::getTimeSinceLastFire(int x, int y){
 	return timeSinceLastFire[x][y];	
 }
+int AIEM::setFireSeverity(int x, int y, int v){
+	fireSeverity[x][y] = v; 
+}
+int AIEM::setVegetationType(int x, int y, int v){
+	vegetationType[x][y] = v; 
+}
+int AIEM::setTimeSinceLastFire(int x, int y, int v){
+	timeSinceLastFire[x][y] = v; 
+}
