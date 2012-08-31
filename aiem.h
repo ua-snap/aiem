@@ -13,8 +13,8 @@ class AIEM {
 		int getVegetationType(int x, int y);
 		int getTimeSinceLastFire(int x, int y);
 
-		int getSoilTemperature(int x, int y);
-		int getSoilBiomass(int x, int y);
+		float getSoilTemperature(int x, int y);
+		float getSoilBiomass(int x, int y);
 
 		/* Internal variables, data structures, etc. */	
 		int domainWidth;

@@ -8,14 +8,23 @@ void AIEM::initialize(){
 	fireSeverity = new int*[domainWidth];
 	vegetationType = new int*[domainWidth];
 	timeSinceLastFire = new int*[domainWidth];
+
+	soilBiomass = new float*[domainWidth];
+	soilTemperature = new float*[domainWidth];
 	for (int i = 0; i < domainWidth; i++){
 		fireSeverity[i] = new int[domainHeight];
 		vegetationType[i] = new int[domainHeight];
 		timeSinceLastFire[i] = new int[domainHeight];
+	
+		soilBiomass[i] = new float[domainHeight];
+		soilTemperature[i] = new float[domainHeight];
 		for (int j = 0; j < domainHeight; j++){
 			fireSeverity[i][j] = 0;
 			vegetationType[i][j] = 0;
 			timeSinceLastFire[i][j] = 0;
+
+			soilBiomass[i][j] = 0;
+			soilTemperature[i][j] = 0;
 		}
 	}
 }
@@ -37,12 +46,25 @@ int AIEM::getVegetationType(int x, int y){
 int AIEM::getTimeSinceLastFire(int x, int y){
 	return timeSinceLastFire[x][y];	
 }
-int AIEM::setFireSeverity(int x, int y, int v){
+void AIEM::setFireSeverity(int x, int y, int v){
 	fireSeverity[x][y] = v; 
 }
-int AIEM::setVegetationType(int x, int y, int v){
+void AIEM::setVegetationType(int x, int y, int v){
 	vegetationType[x][y] = v; 
 }
-int AIEM::setTimeSinceLastFire(int x, int y, int v){
+void AIEM::setTimeSinceLastFire(int x, int y, int v){
 	timeSinceLastFire[x][y] = v; 
+}
+
+float AIEM::getSoilBiomass(int x, int y){
+	return soilBiomass[x][y];	
+}
+float AIEM::getSoilTemperature(int x, int y){
+	return soilTemperature[x][y];	
+}
+void AIEM::setSoilBiomass(int x, int y, int v){
+	soilBiomass[x][y] = v; 
+}
+void AIEM::setSoilTemperature(int x, int y, int v){
+	soilTemperature[x][y] = v; 
 }
