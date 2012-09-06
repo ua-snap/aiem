@@ -69,16 +69,9 @@ int main(int argc, char* argv[]){
 	stime=time(0);
 	cout<<"run TEM stand-alone - start @"<<ctime(&stime)<<"\n";
 
-	string controlfile="";
-	if(argc==1){ //if there is no control file specified
-		controlfile ="config/controlfile_site.txt";
-	} else if(argc ==2) {
-		controlfile =argv[1];
-	}
-
 	Runner siter;
 
-	siter.initInput(controlfile, "siter");
+	siter.initInput(args->getTEMControlName(), "siter");
 	siter.initOutput();
 
 	siter.setupData();
