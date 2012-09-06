@@ -1,5 +1,7 @@
 #ifndef AIEM_H
 #define AIEM_H
+#include <iostream>
+#include <sstream>
 
 class AIEM {
 	public:
@@ -7,6 +9,8 @@ class AIEM {
 		AIEM();
 		void initialize();
 		void clearCells();
+	
+		bool boundsCheck(int x, int y);
 
 		/* Data fetch methods */
 		int getFireSeverity(int x, int y);

@@ -1,5 +1,6 @@
 #include "aiem.h"
 
+
 AIEM::AIEM(){
 	domainWidth = 5528;
 	domainHeight = 2223;
@@ -37,6 +38,20 @@ void AIEM::clearCells(){
 		}
 	}
 }
+bool AIEM::boundsCheck(int x, int y){
+	std::stringstream errmsg;
+	if (x < 0 || x >= domainWidth){
+		errmsg << "\terror in domainWidth\n";
+	}
+	if (y < 0 || y >= domainHeight){
+		errmsg << "\terror in domainHeight\n";
+	}
+	if (errmsg.str().length() > 0){
+		std::cout << "boundsCheck(" << x << "," << y << ") fails:\n" << errmsg.str();
+		return false;
+	}
+	return true;
+}
 int AIEM::getFireSeverity(int x, int y){
 	return fireSeverity[x][y];	
 }
@@ -47,13 +62,19 @@ int AIEM::getTimeSinceLastFire(int x, int y){
 	return timeSinceLastFire[x][y];	
 }
 void AIEM::setFireSeverity(int x, int y, int v){
-	fireSeverity[x][y] = v; 
+	if(boundsCheck(x,y)){
+		fireSeverity[x][y] = v; 
+	}
 }
 void AIEM::setVegetationType(int x, int y, int v){
-	vegetationType[x][y] = v; 
+	if(boundsCheck(x,y)){
+		vegetationType[x][y] = v; 
+	}
 }
 void AIEM::setTimeSinceLastFire(int x, int y, int v){
-	timeSinceLastFire[x][y] = v; 
+	if(boundsCheck(x,y)){
+		timeSinceLastFire[x][y] = v; 
+	}
 }
 
 float AIEM::getSoilBiomass(int x, int y){
@@ -63,8 +84,12 @@ float AIEM::getSoilTemperature(int x, int y){
 	return soilTemperature[x][y];	
 }
 void AIEM::setSoilBiomass(int x, int y, int v){
-	soilBiomass[x][y] = v; 
+	if(boundsCheck(x,y)){
+		soilBiomass[x][y] = v; 
+	}
 }
 void AIEM::setSoilTemperature(int x, int y, int v){
-	soilTemperature[x][y] = v; 
+	if(boundsCheck(x,y)){
+		soilTemperature[x][y] = v; 
+	}
 }

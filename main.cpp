@@ -10,7 +10,6 @@ AIEM* aiem;
 int main(int argc, char* argv[]){
 	aiem = new AIEM();
 	aiem->initialize();
-
 	args->parse(argc, argv);
 	if (args->getHelp()){
 		args->showHelp();
@@ -19,6 +18,7 @@ int main(int argc, char* argv[]){
 	int startYear = 1901;
 	int transitionYear = 2009;
 	int endYear = 2099;
+
 	for (int i = startYear; i < endYear; i++){
 		for (int j = 0; j < 12; j++){
 
@@ -32,11 +32,13 @@ int main(int argc, char* argv[]){
 	/* ALFRESCO */
 	RunStats = new StatArray();
 	CustomFresco* _simulation = new CustomFresco(false);
+
 	_simulation->setIsStopped(false);
 	srand(1234763211);
 	long repRand = rand();
 	_simulation->setup("/home/apbennett/aiem/", args->getFifName(), "/home/apbennett/aiem", repRand);
 	RunStats->setFirstYear(_simulation->fif().nGet("FirstYear"));
+
 	int fireCounter;
 	for (int i = _simulation->fif().nGet("FirstYear"); i <= _simulation->fif().nGet("LastYear"); i++){
 		_simulation->runOneYear(0,i);
