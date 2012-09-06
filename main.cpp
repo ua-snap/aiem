@@ -1,7 +1,7 @@
 #include "ArgHandler.h"
 #include "aiem.h"
 #include "alfresco.h"
-//#include "GIPL2.h"
+#include "GIPL2.h"
 #include "dostem.h"
 
 StatArray* RunStats;
@@ -25,11 +25,11 @@ int main(int argc, char* argv[]){
 		}
 	}
 	/* GIPL */
-	//if (args->getRunGIPL()){
-	//	GIPL* gipl = new GIPL();
-	//	gipl->init();
-	//	gipl->run();
-	//}
+	if (args->getRunGIPL()){
+		GIPL* gipl = new GIPL();
+		gipl->init();
+		gipl->run();
+	}
 
 	/* ALFRESCO */
 	if (args->getRunALFRESCO()){
@@ -68,8 +68,6 @@ int main(int argc, char* argv[]){
 		siter.initOutput();
 
 		siter.setupData();
-
-		//
 		siter.run();
 
 		etime=time(0);
