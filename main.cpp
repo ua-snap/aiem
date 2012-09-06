@@ -25,51 +25,56 @@ int main(int argc, char* argv[]){
 		}
 	}
 	/* GIPL */
-	//GIPL* gipl = new GIPL();
-	//gipl->init();
-	//gipl->run();
+	//if (args->getRunGIPL()){
+	//	GIPL* gipl = new GIPL();
+	//	gipl->init();
+	//	gipl->run();
+	//}
 
 	/* ALFRESCO */
-	RunStats = new StatArray();
-	CustomFresco* _simulation = new CustomFresco(false);
+	if (args->getRunALFRESCO()){
+		RunStats = new StatArray();
+		CustomFresco* _simulation = new CustomFresco(false);
 
-	_simulation->setIsStopped(false);
-	srand(1234763211);
-	long repRand = rand();
-	_simulation->setup("/home/apbennett/aiem/", args->getFifName(), "/home/apbennett/aiem", repRand);
-	RunStats->setFirstYear(_simulation->fif().nGet("FirstYear"));
+		_simulation->setIsStopped(false);
+		srand(1234763211);
+		long repRand = rand();
+		_simulation->setup("/home/apbennett/aiem/", args->getFifName(), "/home/apbennett/aiem", repRand);
+		RunStats->setFirstYear(_simulation->fif().nGet("FirstYear"));
 
-	int fireCounter;
-	for (int i = _simulation->fif().nGet("FirstYear"); i <= _simulation->fif().nGet("LastYear"); i++){
-		_simulation->runOneYear(0,i);
-		std::cout << "Year " << i << " Complete\n";
-		aiem->clearCells();
+		int fireCounter;
+		for (int i = _simulation->fif().nGet("FirstYear"); i <= _simulation->fif().nGet("LastYear"); i++){
+			_simulation->runOneYear(0,i);
+			std::cout << "Year " << i << " Complete\n";
+			aiem->clearCells();
+		}
+		//_simulation->runEnd();
+		_simulation->clear();
+		delete _simulation; _simulation = 0;
+		std::cout << "Rep " << 0 << " of " << 0 << " complete" << std::endl;
+		RunStats->writeStats();
 	}
-	//_simulation->runEnd();
-	_simulation->clear();
-	delete _simulation; _simulation = 0;
-	std::cout << "Rep " << 0 << " of " << 0 << " complete" << std::endl;
-	RunStats->writeStats();
-
 
 	/* TEM */	
-	time_t stime;
-	time_t etime;
-	stime=time(0);
-	cout<<"run TEM stand-alone - start @"<<ctime(&stime)<<"\n";
+	if (args->getRunTEM()){
+		time_t stime;
+		time_t etime;
+		stime=time(0);
+		cout<<"run TEM stand-alone - start @"<<ctime(&stime)<<"\n";
 
-	Runner siter;
+		Runner siter;
 
-	siter.initInput(args->getTEMControlName(), "siter");
-	siter.initOutput();
+		siter.initInput(args->getTEMControlName(), "siter");
+		siter.initOutput();
 
-	siter.setupData();
+		siter.setupData();
 
-	//
-	siter.run();
+		//
+		siter.run();
 
-	etime=time(0);
-	cout <<"run TEM stand-alone - done @"<<ctime(&etime)<<"\n";
-	cout <<"total seconds: "<<difftime(etime, stime)<<"\n";
+		etime=time(0);
+		cout <<"run TEM stand-alone - done @"<<ctime(&etime)<<"\n";
+		cout <<"total seconds: "<<difftime(etime, stime)<<"\n";
+	}
 	return 0;
 }

@@ -8,12 +8,18 @@ ArgHandler::ArgHandler(){
 	debug = false;
 	help = false;
 	version = false;
+	runALFRESCO = true;
+	runTEM = true;
+	runGIPL = true;
 }
 void ArgHandler::parse(int argc, char** argv){
 	desc.add_options()
 		("help,h", "produces helps message")
 		("version,v", "show the version information")
 		("debug,d", "enable debug mode")
+		("disablealfresco", "disable tem run")
+		("disablegipl", "disable giple run")
+		("disabletem", "disable alfresco run")
 		("fif", boost::program_options::value<string>(), "set the alfresco fif file")
 		("temcontrol", boost::program_options::value<string>(), "set the TEM control file")
 	;
@@ -26,6 +32,15 @@ void ArgHandler::parse(int argc, char** argv){
 	}
 	if (varmap.count("debug")){
 		debug = true;
+	}
+	if (varmap.count("disablealfresco")){
+		runALFRESCO = false;
+	}
+	if (varmap.count("disablegiple")){
+		runGIPL = false;
+	}
+	if (varmap.count("disabletem")){
+		runTEM = false;
 	}
 	if (varmap.count("fif")){
         	fifFile = varmap["fif"].as<string>();
