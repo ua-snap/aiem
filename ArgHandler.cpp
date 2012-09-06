@@ -3,6 +3,7 @@
 
 ArgHandler::ArgHandler(){
 	fifFile = "default.fif";
+	temControlFile = "config/controlfile_site.txt";
 	boost::filesystem::path p = boost::filesystem::initial_path();
 	debug = false;
 	help = false;
@@ -14,6 +15,7 @@ void ArgHandler::parse(int argc, char** argv){
 		("version,v", "show the version information")
 		("debug,d", "enable debug mode")
 		("fif", boost::program_options::value<string>(), "set the alfresco fif file")
+		("temcontrol", boost::program_options::value<string>(), "set the TEM control file")
 	;
 	
 	boost::program_options::store(boost::program_options::parse_command_line(argc, argv, desc), varmap);
@@ -28,9 +30,15 @@ void ArgHandler::parse(int argc, char** argv){
 	if (varmap.count("fif")){
         	fifFile = varmap["fif"].as<string>();
 	}
+	if (varmap.count("temcontrol")){
+        	temControlFile = varmap["temcontrol"].as<string>();
+	}
 }
 string ArgHandler::getFifName(){
 	return fifFile;
+}
+string ArgHandler::getTEMControlName(){
+	return temControlFile;
 }
 void ArgHandler::showHelp(){
 /**

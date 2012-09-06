@@ -11,6 +11,7 @@ class ArgHandler{
 	boost::program_options::options_description desc;
 	boost::program_options::variables_map varmap;
 	string fifFile;
+	string temControlFile;
 	bool debug;
 	bool help;
 	bool version;
@@ -19,6 +20,7 @@ public:
 	void parse(int argc, char** argv);
 	void showHelp();
 	string getFifName();
+	string getTEMControlName();
 	inline const bool getDebug(){ return debug; }
 	inline const bool getHelp() const { return help; }
 	inline const bool getVersion() const { return version; }

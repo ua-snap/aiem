@@ -52,6 +52,9 @@ bool AIEM::boundsCheck(int x, int y){
 	}
 	return true;
 }
+bool AIEM::inputCheck(int x, int y, int v){
+
+}
 int AIEM::getFireSeverity(int x, int y){
 	return fireSeverity[x][y];	
 }

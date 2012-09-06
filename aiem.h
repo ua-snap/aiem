@@ -11,6 +11,7 @@ class AIEM {
 		void clearCells();
 	
 		bool boundsCheck(int x, int y);
+		bool inputCheck(int x, int y, int v);
 
 		/* Data fetch methods */
 		int getFireSeverity(int x, int y);
