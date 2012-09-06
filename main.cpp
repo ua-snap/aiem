@@ -43,17 +43,7 @@ int main(int argc, char* argv[]){
 	for (int i = _simulation->fif().nGet("FirstYear"); i <= _simulation->fif().nGet("LastYear"); i++){
 		_simulation->runOneYear(0,i);
 		std::cout << "Year " << i << " Complete\n";
-		fireCounter = 0;
-		for (int j = 0; j < 4000; j++){
-			for (int k = 0; k < 2000; k++){
-				if (aiem->fireSeverity[j][k] > 0){
-					//std::cout << "Cell[" << j << "][" << k << "] = " << aiem->fireSeverity[j][k] << "\n";
-					fireCounter++;
-				}
-			}
-		}
 		aiem->clearCells();
-		std::cout << "Pixels Burned: " << fireCounter << "\n";
 	}
 	//_simulation->runEnd();
 	_simulation->clear();
@@ -61,7 +51,6 @@ int main(int argc, char* argv[]){
 	std::cout << "Rep " << 0 << " of " << 0 << " complete" << std::endl;
 	RunStats->writeStats();
 
-	return 0;
 
 	/* TEM */	
 	time_t stime;
