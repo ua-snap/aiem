@@ -21,27 +21,30 @@ class AIEM {
 		float getSoilTemperature(int x, int y);
 		float getSoilBiomass(int x, int y);
 
-		/* Internal variables, data structures, etc. */	
-		int domainWidth;
-		int domainHeight;
-
-		/* ALFRESCO set variables */
-		int** fireSeverity;
-		int** vegetationType;
-		int** timeSinceLastFire;
-
+		/* ALFRESCO set methods */
 		void setFireSeverity(int x, int y, int v);
 		void setVegetationType(int x, int y, int v);
 		void setTimeSinceLastFire(int x, int y, int v);
 
 		/* GIPL set variables */
 
-		/* TEM set variables */
-		float** soilTemperature;
-		float** soilBiomass;
-
+		/* TEM set methods */
 		void setSoilTemperature(int x, int y, int v);
 		void setSoilBiomass(int x, int y, int v);
+	private:
+		/* Internal variables, data structures, etc. */
+                int domainWidth;
+                int domainHeight;
+
+		/* ALFRESCO set variables */
+                int** fireSeverity;
+                int** vegetationType;
+                int** timeSinceLastFire;
+
+		/* TEM set variables */
+                float** soilTemperature;
+                float** soilBiomass;
+
 };
 
 #endif
