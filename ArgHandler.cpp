@@ -36,7 +36,7 @@ void ArgHandler::parse(int argc, char** argv){
 	if (varmap.count("disablealfresco")){
 		runALFRESCO = false;
 	}
-	if (varmap.count("disablegiple")){
+	if (varmap.count("disablegipl")){
 		runGIPL = false;
 	}
 	if (varmap.count("disabletem")){
