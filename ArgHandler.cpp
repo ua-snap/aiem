@@ -18,7 +18,7 @@ void ArgHandler::parse(int argc, char** argv){
 		("version,v", "show the version information")
 		("debug,d", "enable debug mode")
 		("disablealfresco", "disable tem run")
-		("disablegipl", "disable giple run")
+		("disablegipl", "disable gipl run")
 		("disabletem", "disable alfresco run")
 		("fif", boost::program_options::value<string>(), "set the alfresco fif file")
 		("temcontrol", boost::program_options::value<string>(), "set the TEM control file")

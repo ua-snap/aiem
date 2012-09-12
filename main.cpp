@@ -62,13 +62,13 @@ int main(int argc, char* argv[]){
 		stime=time(0);
 		cout<<"run TEM stand-alone - start @"<<ctime(&stime)<<"\n";
 
-		Runner siter;
+		Runner regner;
 
-		siter.initInput(args->getTEMControlName(), "siter");
-		siter.initOutput();
+		regner.initInput(args->getTEMControlName(), "regner2");
+		regner.initOutput();
 
-		siter.setupData();
-		siter.run();
+		regner.setupData();
+		regner.run();
 
 		etime=time(0);
 		cout <<"run TEM stand-alone - done @"<<ctime(&etime)<<"\n";
