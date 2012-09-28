@@ -65,10 +65,14 @@ int main(int argc, char* argv[]){
 		Runner regner;
 
 		regner.initInput(args->getTEMControlName(), "regner2");
-		regner.initOutput();
 
-		regner.setupData();
-		regner.run();
+                regner.initOutput();
+
+                regner.setupData();
+
+                regner.setupIDs();
+
+		regner.runmode3();
 
 		etime=time(0);
 		cout <<"run TEM stand-alone - done @"<<ctime(&etime)<<"\n";

@@ -1,5 +1,5 @@
 CC=g++
-TEMDIR=/home/apbennett/fmyuan/dvm-dos-tem
+TEMDIR=/home/apbennett/dvm-dos-tem
 INCLUDES= -I/home/apbennett/aiem \
 	-I/home/apbennett/alfresco/include \
 	-I/home/apbennett/gipl \
