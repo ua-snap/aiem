@@ -24,12 +24,7 @@ int main(int argc, char* argv[]){
 
 		}
 	}
-	/* GIPL */
-	if (args->getRunGIPL()){
-		GIPL* gipl = new GIPL();
-		gipl->init();
-		gipl->run();
-	}
+
 
 	/* ALFRESCO SETUP */
 	RunStats = new StatArray();
@@ -40,6 +35,12 @@ int main(int argc, char* argv[]){
 		long repRand = rand();
 		_simulation->setup("/home/apbennett/aiem/", args->getFifName(), "/home/apbennett/aiem", repRand);
 		RunStats->setFirstYear(_simulation->fif().nGet("FirstYear"));
+	}
+	/* GIPL */
+	GIPL* gipl = new GIPL();
+	if (args->getRunGIPL()){
+		gipl->init();
+
 	}
 	time_t stime;
 	time_t etime;
@@ -65,6 +66,7 @@ int main(int argc, char* argv[]){
 			for (int j = 0; j < 12; j++){
 				if (args->getRunTEM()){
 					regner.runSpatially(i - 1901,j);
+					gipl->run();
 				}
 			}
 			aiem->clearCells();
