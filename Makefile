@@ -1,8 +1,10 @@
 CC=g++
+ALFDIR=/home/apbennett/alfresco
+GIPLDIR=/home/apbennett/gipl
 TEMDIR=/home/apbennett/dvm-dos-tem
-INCLUDES= -I/home/apbennett/aiem \
-	-I/home/apbennett/alfresco/include \
-	-I/home/apbennett/gipl \
+INCLUDES= \
+	-I$(ALFDIR)/include \
+	-I$(GIPLDIR) \
 	-I/usr/include/gdal \
 	-I$(TEMDIR)/src \
 	-I$(TEMDIR)/src/assembler \
@@ -18,10 +20,10 @@ INCLUDES= -I/home/apbennett/aiem \
 	-I$(TEMDIR)/src/snowsoil \
 	-I$(TEMDIR)/src/util \
 	-I$(TEMDIR)/src/vegetation
-LDFLAGS=-L/home/apbennett/lib -L$(TEMDIR) -L/home/apbennett/gipl
+LDFLAGS=-L/home/apbennett/lib -L$(TEMDIR) -L$(GIPLDIR)
 LIBS=-lFrescoAIEM -lPocoFoundation -lPocoXML -lPocoNet -lgdal -lTEM -lGIPL -lboost_system -lboost_filesystem -lboost_program_options
 EXEC=aiem
-SRC=/home/apbennett/alfresco/src/StatArray.cpp /home/apbennett/alfresco/src/StatFile.cpp aiem.cpp ArgHandler.cpp main.cpp
+SRC=$(ALFDIR)/src/StatArray.cpp $(ALFDIR)/src/StatFile.cpp aiem.cpp ArgHandler.cpp main.cpp
 all:
 	$(CC) $(INCLUDES) $(SRC) -o $(EXEC) $(LDFLAGS) $(LIBS)
 clean:
