@@ -1,0 +1,6 @@
+#Output
+*.txt
+#Executables
+aiem
+#Output Directories
+Maps/
