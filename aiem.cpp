@@ -96,3 +96,21 @@ void AIEM::setSoilTemperature(int x, int y, int v){
 		soilTemperature[x][y] = v; 
 	}
 }
+double* AIEM::getAlbers(double lat, double lon){
+	OGRPoint pt;
+	pt.setX(lon);
+	pt.setY(lat);
+
+	OGRSpatialReference poSRS;
+	poSRS.importFromEPSG( 4326 );
+	OGRSpatialReference poTRS;
+	poTRS.importFromEPSG( 3338 );
+	OGRCoordinateTransformation *poCT;
+	poCT = OGRCreateCoordinateTransformation( &poSRS, &poTRS );
+	
+	pt.transform( poCT );
+	double* albers = new double[2];
+	albers[0] = pt.getX();
+	albers[1] = pt.getY();
+	return albers;
+}

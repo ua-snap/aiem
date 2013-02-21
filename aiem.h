@@ -2,6 +2,7 @@
 #define AIEM_H
 #include <iostream>
 #include <sstream>
+#include <ogr_geometry.h>
 
 class AIEM {
 	public:
@@ -31,6 +32,9 @@ class AIEM {
 		/* TEM set methods */
 		void setSoilTemperature(int x, int y, int v);
 		void setSoilBiomass(int x, int y, int v);
+
+		/* Spatial translation */
+		double* getAlbers(double lat, double lon); // Takes DD, returns NAD83 x,y array
 	private:
 		/* Internal variables, data structures, etc. */
                 int domainWidth;
