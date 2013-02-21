@@ -97,19 +97,19 @@ void AIEM::setSoilTemperature(int x, int y, int v){
 	}
 }
 double* AIEM::getAlbers(double lat, double lon){
-	OGRPoint pt;
+	OGRPoint pt;  // Create a new spatial point
 	pt.setX(lon);
 	pt.setY(lat);
 
 	OGRSpatialReference poSRS;
-	poSRS.importFromEPSG( 4326 );
+	poSRS.importFromEPSG( 4326 ); //Reference the incoming WGS84 Decimal Degree Format
 	OGRSpatialReference poTRS;
-	poTRS.importFromEPSG( 3338 );
+	poTRS.importFromEPSG( 3338 ); //Reference the outgoing NAD83 Alaskan Albers projection
 	OGRCoordinateTransformation *poCT;
 	poCT = OGRCreateCoordinateTransformation( &poSRS, &poTRS );
 	
 	pt.transform( poCT );
-	double* albers = new double[2];
+	double* albers = new double[2];  //Hold the output in x,y format rather than incoming lat,long
 	albers[0] = pt.getX();
 	albers[1] = pt.getY();
 	return albers;
