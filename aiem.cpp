@@ -1,6 +1,4 @@
 #include "aiem.h"
-#include <ogrsf_frmts.h>
-#include <csignal>
 
 AIEM::AIEM(){
 	domainWidth = 5528;
