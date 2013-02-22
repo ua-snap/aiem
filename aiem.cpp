@@ -1,5 +1,6 @@
 #include "aiem.h"
-
+#include <ogrsf_frmts.h>
+#include <csignal>
 
 AIEM::AIEM(){
 	domainWidth = 5528;
@@ -97,20 +98,19 @@ void AIEM::setSoilTemperature(int x, int y, int v){
 	}
 }
 double* AIEM::getAlbers(double lat, double lon){
-	OGRPoint pt;  // Create a new spatial point
-	pt.setX(lon);
-	pt.setY(lat);
-
 	OGRSpatialReference poSRS;
 	poSRS.importFromEPSG( 4326 ); //Reference the incoming WGS84 Decimal Degree Format
+
 	OGRSpatialReference poTRS;
 	poTRS.importFromEPSG( 3338 ); //Reference the outgoing NAD83 Alaskan Albers projection
+
 	OGRCoordinateTransformation *poCT;
 	poCT = OGRCreateCoordinateTransformation( &poSRS, &poTRS );
-	
-	pt.transform( poCT );
+
 	double* albers = new double[2];  //Hold the output in x,y format rather than incoming lat,long
-	albers[0] = pt.getX();
-	albers[1] = pt.getY();
+	albers[0] = lon;
+	albers[1] = lat;
+	poCT->Transform(1, &albers[0], &albers[1]);
+
 	return albers;
 }
