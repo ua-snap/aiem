@@ -37,6 +37,10 @@ class AIEM {
 		double* getAlbers(double lat, double lon); // Takes DD, returns NAD83 x,y array
 	private:
 		/* Internal variables, data structures, etc. */
+		int XULCorner;
+		int YULCorner;
+		int domainXOffset;
+		int domainYOffset;
                 int domainWidth;
                 int domainHeight;
 

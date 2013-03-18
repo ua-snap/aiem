@@ -3,6 +3,10 @@
 AIEM::AIEM(){
 	domainWidth = 5528;
 	domainHeight = 2223;
+	domainXOffset = 0;
+	domainYOffset = 0;
+	XULCorner = -1725223.205807;
+	YULCorner = 2544412.932644;
 }
 void AIEM::initialize(){
 	fireSeverity = new int*[domainWidth];
@@ -96,6 +100,11 @@ void AIEM::setSoilTemperature(int x, int y, int v){
 	}
 }
 double* AIEM::getAlbers(double lat, double lon){
+	/* 
+ 	* Taking in Decimal Degrees (DD), and returning the X,Y location of the pixel in
+ 	* Alaska Albers (NAD83) projection, offset by ALFRESCO Origin and Offset of
+ 	* Bounding Box
+ 	*/ 
 	OGRSpatialReference poSRS;
 	poSRS.importFromEPSG( 4326 ); //Reference the incoming WGS84 Decimal Degree Format
 
@@ -109,6 +118,8 @@ double* AIEM::getAlbers(double lat, double lon){
 	albers[0] = lon;
 	albers[1] = lat;
 	poCT->Transform(1, &albers[0], &albers[1]);
+	albers[0] = round((albers[0] - XULCorner) / 1000) + domainXOffset;
+	albers[1] = round((YULCorner - albers[1]) / 1000) + domainYOffset;
 
 	return albers;
 }
