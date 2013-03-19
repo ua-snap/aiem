@@ -61,11 +61,23 @@ bool AIEM::inputCheck(int x, int y, int v){
 int AIEM::getFireSeverity(int x, int y){
 	return fireSeverity[x][y];	
 }
+int AIEM::getFireSeverity(double lat, double lon){
+	int *coords = getAlbers(lat, lon);
+	return fireSeverity[coords[0]][coords[1]];
+}
 int AIEM::getVegetationType(int x, int y){
 	return vegetationType[x][y];	
 }
+int AIEM::getVegetationType(double lat, double lon){
+	int *coords = getAlbers(lat, lon);
+	return vegetationType[coords[0]][coords[1]];
+}
 int AIEM::getTimeSinceLastFire(int x, int y){
 	return timeSinceLastFire[x][y];	
+}
+int AIEM::getTimeSinceLastFire(double lat, double lon){
+	int *coords = getAlbers(lat, lon);
+	return timeSinceLastFire[coords[0]][coords[1]];	
 }
 void AIEM::setFireSeverity(int x, int y, int v){
 	if(boundsCheck(x,y)){
@@ -99,7 +111,7 @@ void AIEM::setSoilTemperature(int x, int y, int v){
 		soilTemperature[x][y] = v; 
 	}
 }
-double* AIEM::getAlbers(double lat, double lon){
+int* AIEM::getAlbers(double lat, double lon){
 	/* 
  	* Taking in Decimal Degrees (DD), and returning the X,Y location of the pixel in
  	* Alaska Albers (NAD83) projection, offset by ALFRESCO Origin and Offset of
@@ -113,13 +125,17 @@ double* AIEM::getAlbers(double lat, double lon){
 
 	OGRCoordinateTransformation *poCT;
 	poCT = OGRCreateCoordinateTransformation( &poSRS, &poTRS );
-
-	double* albers = new double[2];  //Hold the output in x,y format rather than incoming lat,long
+	
+	/* Simple array to hold lat/long for transformation */
+	double* albers = new double[2];
 	albers[0] = lon;
 	albers[1] = lat;
 	poCT->Transform(1, &albers[0], &albers[1]);
-	albers[0] = round((albers[0] - XULCorner) / 1000) + domainXOffset;
-	albers[1] = round((YULCorner - albers[1]) / 1000) + domainYOffset;
 
-	return albers;
+	/* Array to hold int converted output, in XY coordinates */
+	int* alfcoords = new int[2];
+	alfcoords[0] = round((albers[0] - XULCorner) / 1000) + domainXOffset;
+	alfcoords[1] = round((YULCorner - albers[1]) / 1000) + domainYOffset;
+
+	return alfcoords;
 }

@@ -14,10 +14,18 @@ class AIEM {
 		bool boundsCheck(int x, int y);
 		bool inputCheck(int x, int y, int v);
 
-		/* Data fetch methods */
+		/* Data fetch methods
+		* Fetching can be done with either DD lat/lon or direct x,y coords 
+		* The call method determines the input.  Output is the same.
+  		*/
 		int getFireSeverity(int x, int y);
+		int getFireSeverity(double lat, double lon);
+
 		int getVegetationType(int x, int y);
+		int getVegetationType(double lat, double lon);
+
 		int getTimeSinceLastFire(int x, int y);
+		int getTimeSinceLastFire(double lat, double lon);
 
 		float getSoilTemperature(int x, int y);
 		float getSoilBiomass(int x, int y);
@@ -34,7 +42,7 @@ class AIEM {
 		void setSoilBiomass(int x, int y, int v);
 
 		/* Spatial translation */
-		double* getAlbers(double lat, double lon); // Takes DD, returns NAD83 x,y array
+		int* getAlbers(double lat, double lon); // Takes DD, returns NAD83 converted to x,y array
 	private:
 		/* Internal variables, data structures, etc. */
 		int XULCorner;

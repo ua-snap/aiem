@@ -58,7 +58,7 @@ int main(int argc, char* argv[]){
 		regner.runmode3();
 	}
 	//	for (int i = _simulation->fif().nGet("FirstYear"); i <= _simulation->fif().nGet("LastYear"); i++){
-		for (int i = 1901; i <= 1909; i++){
+		for (int i = 1901; i <= 2000; i++){
 			if (args->getRunALFRESCO()){
 				_simulation->runOneYear(0,i);
 			}
