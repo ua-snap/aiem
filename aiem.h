@@ -28,7 +28,10 @@ class AIEM {
 		int getTimeSinceLastFire(double lat, double lon);
 
 		float getSoilTemperature(int x, int y);
+		float getSoilTemperature(double lat, double lon);
+	
 		float getSoilBiomass(int x, int y);
+		float getSoilBiomass(double lat, double lon);
 
 		/* ALFRESCO set methods */
 		void setFireSeverity(int x, int y, int v);

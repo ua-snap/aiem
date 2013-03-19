@@ -58,6 +58,7 @@ bool AIEM::boundsCheck(int x, int y){
 bool AIEM::inputCheck(int x, int y, int v){
 
 }
+
 int AIEM::getFireSeverity(int x, int y){
 	return fireSeverity[x][y];	
 }
@@ -65,6 +66,7 @@ int AIEM::getFireSeverity(double lat, double lon){
 	int *coords = getAlbers(lat, lon);
 	return fireSeverity[coords[0]][coords[1]];
 }
+
 int AIEM::getVegetationType(int x, int y){
 	return vegetationType[x][y];	
 }
@@ -72,6 +74,7 @@ int AIEM::getVegetationType(double lat, double lon){
 	int *coords = getAlbers(lat, lon);
 	return vegetationType[coords[0]][coords[1]];
 }
+
 int AIEM::getTimeSinceLastFire(int x, int y){
 	return timeSinceLastFire[x][y];	
 }
@@ -79,6 +82,7 @@ int AIEM::getTimeSinceLastFire(double lat, double lon){
 	int *coords = getAlbers(lat, lon);
 	return timeSinceLastFire[coords[0]][coords[1]];	
 }
+
 void AIEM::setFireSeverity(int x, int y, int v){
 	if(boundsCheck(x,y)){
 		fireSeverity[x][y] = v; 
@@ -98,9 +102,19 @@ void AIEM::setTimeSinceLastFire(int x, int y, int v){
 float AIEM::getSoilBiomass(int x, int y){
 	return soilBiomass[x][y];	
 }
+float AIEM::getSoilBiomass(double lat, double lon){
+	int *coords = getAlbers(lat, lon);
+	return soilBiomass[coords[0]][coords[1]];	
+}
+
 float AIEM::getSoilTemperature(int x, int y){
 	return soilTemperature[x][y];	
 }
+float AIEM::getSoilTemperature(double lat, double lon){
+	int *coords = getAlbers(lat, lon);
+	return soilTemperature[coords[0]][coords[1]];	
+}
+
 void AIEM::setSoilBiomass(int x, int y, int v){
 	if(boundsCheck(x,y)){
 		soilBiomass[x][y] = v; 
