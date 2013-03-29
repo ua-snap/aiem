@@ -2,7 +2,7 @@
 #include "aiem.h"
 #include "alfresco.h"
 #include "GIPL2.h"
-#include "dostem.h"
+#include "dvmdostem.h"
 
 StatArray* RunStats;
 ArgHandler* args = new ArgHandler();
