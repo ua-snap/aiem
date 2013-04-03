@@ -15,16 +15,7 @@ int main(int argc, char* argv[]){
 		args->showHelp();
 		return 0;
 	}
-	int startYear = 1901;
 	int transitionYear = 2009;
-	int endYear = 2099;
-
-	for (int i = startYear; i < endYear; i++){
-		for (int j = 0; j < 12; j++){
-
-		}
-	}
-
 
 	/* ALFRESCO SETUP */
 	RunStats = new StatArray();
@@ -57,20 +48,20 @@ int main(int argc, char* argv[]){
                 regner.setupIDs();
 		regner.runmode3();
 	}
-	//	for (int i = _simulation->fif().nGet("FirstYear"); i <= _simulation->fif().nGet("LastYear"); i++){
-		for (int i = 1901; i <= 2000; i++){
-			if (args->getRunALFRESCO()){
-				_simulation->runOneYear(0,i);
-			}
-			std::cout << "Year " << i << " Complete\n";
-			for (int j = 0; j < 12; j++){
-				if (args->getRunTEM()){
-					regner.runSpatially(i - 1901,j);
-					gipl->run();
-				}
-			}
-			aiem->clearCells();
+	/* Main Control Loop */
+	for (int i = args->getStartYear(); i <= args->getEndYear(); i++){
+		if (args->getRunALFRESCO()){
+			_simulation->runOneYear(0,i);
 		}
+		std::cout << "Year " << i << " Complete\n";
+		for (int j = 0; j < 12; j++){
+			if (args->getRunTEM()){
+				regner.runSpatially(i - args->getStartYear(),j);
+				gipl->run();
+			}
+		}
+		aiem->clearCells();
+	}
 	/* ALFRESCO CLEANUP */
 	if (args->getRunALFRESCO()){
 		//_simulation->runEnd();

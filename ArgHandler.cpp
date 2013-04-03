@@ -8,6 +8,7 @@ ArgHandler::ArgHandler(){
 	debug = false;
 	help = false;
 	version = false;
+
 	runALFRESCO = true;
 	runTEM = true;
 	runGIPL = true;
@@ -17,6 +18,8 @@ void ArgHandler::parse(int argc, char** argv){
 		("help,h", "produces helps message")
 		("version,v", "show the version information")
 		("debug,d", "enable debug mode")
+		("start,s", "start year")
+		("end,e", "end year")
 		("disablealfresco", "disable tem run")
 		("disablegipl", "disable gipl run")
 		("disabletem", "disable alfresco run")
@@ -47,6 +50,12 @@ void ArgHandler::parse(int argc, char** argv){
 	}
 	if (varmap.count("temcontrol")){
         	temControlFile = varmap["temcontrol"].as<string>();
+	}
+	if (varmap.count("start")){
+		startYear = atoi(varmap["start"].as<string>().c_str());
+	}
+	if (varmap.count("end")){
+		endYear = atoi(varmap["end"].as<string>().c_str());
 	}
 }
 string ArgHandler::getFifName(){
