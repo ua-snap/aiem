@@ -18,8 +18,8 @@ void ArgHandler::parse(int argc, char** argv){
 		("help,h", "produces helps message")
 		("version,v", "show the version information")
 		("debug,d", "enable debug mode")
-		("start,s", "start year")
-		("end,e", "end year")
+		("start", boost::program_options::value<int>(), "start year")
+		("end", boost::program_options::value<int>(), "end year")
 		("disablealfresco", "disable tem run")
 		("disablegipl", "disable gipl run")
 		("disabletem", "disable alfresco run")
@@ -52,10 +52,10 @@ void ArgHandler::parse(int argc, char** argv){
         	temControlFile = varmap["temcontrol"].as<string>();
 	}
 	if (varmap.count("start")){
-		startYear = atoi(varmap["start"].as<string>().c_str());
+		startYear = varmap["start"].as<int>();
 	}
 	if (varmap.count("end")){
-		endYear = atoi(varmap["end"].as<string>().c_str());
+		endYear = varmap["end"].as<int>();
 	}
 }
 string ArgHandler::getFifName(){

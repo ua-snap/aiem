@@ -1,4 +1,5 @@
 CC=g++
+#CC=mpicxx
 ALFDIR=/home/apbennett/alfresco
 GIPLDIR=/home/apbennett/gipl
 TEMDIR=/home/apbennett/dvm-dos-tem

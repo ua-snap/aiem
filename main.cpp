@@ -3,11 +3,21 @@
 #include "alfresco.h"
 #include "GIPL2.h"
 #include "dvmdostem.h"
+//#include <mpi.h>
 
 StatArray* RunStats;
-ArgHandler* args = new ArgHandler();
 AIEM* aiem;
 int main(int argc, char* argv[]){
+	#ifdef MPI_VERSION
+	int rank;
+	int numtasks;
+	MPI::Init ( argc, argv );
+	rank = MPI::COMM_WORLD.Get_rank();
+	numtasks = MPI::COMM_WORLD.Get_size();
+	#endif
+	
+
+	ArgHandler* args = new ArgHandler();
 	aiem = new AIEM();
 	aiem->initialize();
 	args->parse(argc, argv);
@@ -52,13 +62,19 @@ int main(int argc, char* argv[]){
 	for (int i = args->getStartYear(); i <= args->getEndYear(); i++){
 		if (args->getRunALFRESCO()){
 			_simulation->runOneYear(0,i);
+			std::cout << "Year " << i << " Complete\n";
 		}
-		std::cout << "Year " << i << " Complete\n";
+		#ifdef MPI_VERSION
+		MPI::COMM_WORLD.Barrier();
+		#endif
 		for (int j = 0; j < 12; j++){
 			if (args->getRunTEM()){
 				regner.runSpatially(i - args->getStartYear(),j);
 				gipl->run();
 			}
+			#ifdef MPI_VERSION
+			MPI::COMM_WORLD.Barrier();
+			#endif
 		}
 		aiem->clearCells();
 	}
@@ -77,5 +93,8 @@ int main(int argc, char* argv[]){
 		cout <<"run TEM stand-alone - done @"<<ctime(&etime)<<"\n";
 		cout <<"total seconds: "<<difftime(etime, stime)<<"\n";
 	}
+	#ifdef MPI_VERSION
+	MPI::Finalize();
+	#endif
 	return 0;
 }

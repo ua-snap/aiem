@@ -33,8 +33,8 @@ public:
 	inline const bool getDebug(){ return debug; }
 	inline const bool getHelp() const { return help; }
 	inline const bool getVersion() const { return version; }
-	inline const bool getStartYear() const { return startYear; }
-	inline const bool getEndYear() const { return endYear; }
+	inline const int getStartYear() const { return startYear; }
+	inline const int getEndYear() const { return endYear; }
 	inline const bool getRunALFRESCO() const { return runALFRESCO; }
 	inline const bool getRunGIPL() const { return runGIPL; }
 	inline const bool getRunTEM() const { return runTEM; }
