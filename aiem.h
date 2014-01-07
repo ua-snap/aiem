@@ -3,6 +3,7 @@
 #include <iostream>
 #include <sstream>
 #include <ogr_geometry.h>
+#include "modelData.h"
 
 class AIEM {
 	public:

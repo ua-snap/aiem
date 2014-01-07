@@ -31,6 +31,7 @@ void AIEM::initialize(){
 			soilTemperature[i][j] = 0;
 		}
 	}
+	modelData<int> xyz;
 }
 void AIEM::clearCells(){
 	for (int i = 0; i < domainWidth; i++){
