@@ -3,6 +3,9 @@
 #include <ogr_geometry.h>
 
 template<class T> class ModelData {
+	/*
+ 	* Primary data storage for this variable
+ 	*/
         T **dataArray;
 
 public:
@@ -13,6 +16,9 @@ public:
         ModelData() : dataArray( T() ){
 
         }
+	/*
+ 	* Set up domain size and allocate space for each variable
+  	*/
 	void setDomain(int width, int length){
 		XULCorner = -1725223.205807;
 		YULCorner = 2544412.932644;
@@ -26,6 +32,9 @@ public:
 			}
 		}	
 	}
+	/*
+ 	* Reset the dataArray for this variable
+ 	*/ 
 	void clearData(){
 		for (int i = 0; i < sizeof(dataArray); i++){
 			for (int j = 0; j < sizeof(dataArray[i]); j++){
@@ -33,9 +42,15 @@ public:
 			}
 		}	
 	}
+	/*
+ 	* Set the value in the default x,y array, currently NAD83 Alaska Albers
+ 	*/ 
 	void setValue( int x, int y, T val ){
 		dataArray[x][y] = val;
 	}
+	/* 
+ 	* Set the value using the WGS84 position, referenced to the x,y array	
+ 	*/
 	void setValue( double lat, double lon, T val ){
 		int *coords = getAlbers(lat, lon);
 		dataArray[coords[0]][coords[1]] = val;
