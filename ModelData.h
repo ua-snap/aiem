@@ -2,7 +2,7 @@
 #define MODELDATA_H
 #include <ogr_geometry.h>
 
-template<class T> class modelData {
+template<class T> class ModelData {
         T **dataArray;
 
 public:
@@ -10,7 +10,7 @@ public:
 	double YULCorner;
 	int domainXOffset;
 	int domainYOffset;
-        modelData() : dataArray( T() ){
+        ModelData() : dataArray( T() ){
 
         }
 	void setDomain(int width, int length){

@@ -24,7 +24,7 @@ INCLUDES= \
 LDFLAGS=-L/home/UA/apbennett/lib -L$(TEMDIR) -L$(GIPLDIR)
 LIBS=-lFrescoAIEM -lPocoFoundation -lPocoXML -lPocoNet -lgdal -lTEM -lGIPL -lboost_system -lboost_filesystem -lboost_program_options
 EXEC=aiem
-SRC=$(ALFDIR)/src/StatArray.cpp $(ALFDIR)/src/StatFile.cpp aiem.cpp modelData.cpp ArgHandler.cpp main.cpp
+SRC=$(ALFDIR)/src/StatArray.cpp $(ALFDIR)/src/StatFile.cpp aiem.cpp ModelData.cpp ArgHandler.cpp main.cpp
 all:
 	$(CC) $(INCLUDES) $(SRC) -o $(EXEC) $(LDFLAGS) $(LIBS)
 clean:
