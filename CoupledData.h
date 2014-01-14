@@ -1,8 +1,8 @@
-#ifndef MODELDATA_H
-#define MODELDATA_H
+#ifndef COUPLEDDATA_H
+#define COUPLEDDATA_H
 #include <ogr_geometry.h>
 
-template<class T> class ModelData {
+template<class T> class CoupledData {
 	/*
  	* Primary data storage for this variable
  	*/
@@ -13,7 +13,7 @@ public:
 	double YULCorner;
 	int domainXOffset;
 	int domainYOffset;
-        ModelData() : dataArray( T() ){
+        CoupledData() : dataArray( T() ){
 
         }
 	/*

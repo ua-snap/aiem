@@ -3,7 +3,7 @@
 #include <iostream>
 #include <sstream>
 #include <ogr_geometry.h>
-#include "ModelData.h"
+#include "CoupledData.h"
 
 class AIEM {
 	public:
@@ -25,13 +25,13 @@ class AIEM {
                 int domainHeight;
 
 		/* ALFRESCO data structures */
-		ModelData<int> fireSeverity;
-		ModelData<int> vegetationType;
-                ModelData<int> timeSinceLastFire;
+		CoupledData<int> fireSeverity;
+		CoupledData<int> vegetationType;
+                CoupledData<int> timeSinceLastFire;
 
 		/* TEM set variables */
-		ModelData<int> soilTemperature;
-		ModelData<int> soilBiomass;
+		CoupledData<int> soilTemperature;
+		CoupledData<int> soilBiomass;
 };
 
 #endif
