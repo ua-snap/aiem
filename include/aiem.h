@@ -14,6 +14,14 @@ class AIEM {
 	
 		bool boundsCheck(int x, int y);
 
+		/* ALFRESCO data structures */
+		CoupledData<int> fireSeverity;
+		CoupledData<int> vegetationType;
+                CoupledData<int> timeSinceLastFire;
+
+		/* TEM set variables */
+		CoupledData<int> soilTemperature;
+		CoupledData<int> soilBiomass;
 
 	private:
 		/* Internal variables, data structures, etc. */
@@ -24,14 +32,7 @@ class AIEM {
                 int domainWidth;
                 int domainHeight;
 
-		/* ALFRESCO data structures */
-		CoupledData<int> fireSeverity;
-		CoupledData<int> vegetationType;
-                CoupledData<int> timeSinceLastFire;
 
-		/* TEM set variables */
-		CoupledData<int> soilTemperature;
-		CoupledData<int> soilBiomass;
 };
 
 #endif
