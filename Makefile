@@ -1,9 +1,11 @@
 CC=g++
 #CC=mpicxx
-ALFDIR=/home/UA/apbennett/alfresco
-GIPLDIR=/home/UA/apbennett/gipl
-TEMDIR=/home/UA/apbennett/dvm-dos-tem
+ALFDIR=/home/apbennett/alfresco
+GIPLDIR=/home/apbennett/gipl
+TEMDIR=/home/apbennett/dvm-dos-tem
 INCLUDES= \
+	-I./include \
+	-I./src \
 	-I$(ALFDIR)/include \
 	-I$(GIPLDIR) \
 	-I/usr/include/gdal \
@@ -21,10 +23,10 @@ INCLUDES= \
 	-I$(TEMDIR)/src/snowsoil \
 	-I$(TEMDIR)/src/util \
 	-I$(TEMDIR)/src/vegetation
-LDFLAGS=-L/home/UA/apbennett/lib -L$(TEMDIR) -L$(GIPLDIR)
-LIBS=-lFrescoAIEM -lPocoFoundation -lPocoXML -lPocoNet -lgdal -lTEM -lGIPL -lboost_system -lboost_filesystem -lboost_program_options
+LDFLAGS=-L/home/apbennett/lib -L$(TEMDIR) -L$(GIPLDIR)
+LIBS=-lFrescoAIEM -lPocoFoundation -lPocoXML -lPocoNet -lgdal -lTEM -lgipl -lboost_system -lboost_filesystem -lboost_program_options
 EXEC=aiem
-SRC=$(ALFDIR)/src/StatArray.cpp $(ALFDIR)/src/StatFile.cpp aiem.cpp CoupledData.cpp ArgHandler.cpp main.cpp
+SRC=$(ALFDIR)/src/StatArray.cpp $(ALFDIR)/src/StatFile.cpp src/aiem.cpp src/CoupledData.cpp src/ArgHandler.cpp src/main.cpp
 all:
 	$(CC) $(INCLUDES) $(SRC) -o $(EXEC) $(LDFLAGS) $(LIBS)
 clean:

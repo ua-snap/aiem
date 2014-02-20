@@ -3,9 +3,9 @@
 #include <ogr_geometry.h>
 
 template<class T> class CoupledData {
-	/*
+	/**
  	* Primary data storage for this variable
- 	*/
+ 	**/
         T **dataArray;
 
 public:
@@ -16,10 +16,10 @@ public:
         CoupledData() : dataArray( T() ){
 
         }
-	/*
- 	* Set up domain size and allocate space for each variable
-  	*/
 	void setDomain(int width, int length){
+	/**
+ 	* Set up domain size and allocate space for each variable
+  	**/
 		XULCorner = -1725223.205807;
 		YULCorner = 2544412.932644;
 		domainXOffset = 0;
@@ -42,16 +42,16 @@ public:
 			}
 		}	
 	}
-	/*
- 	* Set the value in the default x,y array, currently NAD83 Alaska Albers
- 	*/ 
 	void setValue( int x, int y, T val ){
+		/**
+		* Set the value in the default x,y array, currently NAD83 Alaska Albers
+		**/ 
 		dataArray[x][y] = val;
 	}
-	/* 
- 	* Set the value using the WGS84 position, referenced to the x,y array	
- 	*/
 	void setValue( double lat, double lon, T val ){
+		/** 
+		* Set the value using the WGS84 position, referenced to the x,y array	
+		**/
 		int *coords = getAlbers(lat, lon);
 		dataArray[coords[0]][coords[1]] = val;
 	}
@@ -67,11 +67,11 @@ public:
 	       	return dataArray[coords[0]][coords[1]];
 	}
 	int* getAlbers(double lat, double lon){
-		/* 
-		 ** Taking in Decimal Degrees (DD), and returning the X,Y location of the pixel in
-		 ** Alaska Albers (NAD83) projection, offset by ALFRESCO Origin and Offset of
-		 ** Bounding Box
-		 * */
+		/**
+		 * Taking in Decimal Degrees (DD), and returning the X,Y location of the pixel in
+		 * Alaska Albers (NAD83) projection, offset by ALFRESCO Origin and Offset of
+		 * Bounding Box
+		 **/
 		OGRSpatialReference poSRS;
 		poSRS.importFromEPSG( 4326 ); //Reference the incoming WGS84 Decimal Degree Format
 
