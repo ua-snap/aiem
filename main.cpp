@@ -30,9 +30,14 @@ int main(int argc, char* argv[]){
 	//	gipl->init();
 	//	gipl->run();
 	//}
+	
 
 	/* ALFRESCO */
+
+
 	if (args->getRunALFRESCO()){
+		FIF fif;
+		fif.Initialize("./",args->getFifName());
 		RunStats = new StatArray();
 		CustomFresco* _simulation = new CustomFresco(false);
 
@@ -40,10 +45,10 @@ int main(int argc, char* argv[]){
 		srand(1234763211);
 		long repRand = rand();
 		_simulation->setup("/home/apbennett/aiem/", args->getFifName(), "/home/apbennett/aiem", repRand);
-		RunStats->setFirstYear(_simulation->fif().nGet("FirstYear"));
+		RunStats->setFirstYear(_simulation->fif().root["Simulation"]["FirstYear"].asInt());
 
 		int fireCounter;
-		for (int i = _simulation->fif().nGet("FirstYear"); i <= _simulation->fif().nGet("LastYear"); i++){
+		for (int i = fif.root["Simulation"]["FirstYear"].asInt(); i <= fif.root["Simulation"]["FirstYear"].asInt(); i++){
 			_simulation->runOneYear(0,i);
 			std::cout << "Year " << i << " Complete\n";
 			aiem->clearCells();
@@ -52,7 +57,7 @@ int main(int argc, char* argv[]){
 		_simulation->clear();
 		delete _simulation; _simulation = 0;
 		std::cout << "Rep " << 0 << " of " << 0 << " complete" << std::endl;
-		RunStats->writeStats();
+		//RunStats->writeStats();
 	}
 
 	/* TEM */	
