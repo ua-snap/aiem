@@ -35,7 +35,7 @@ int main(int argc, char* argv[]){
 		srand(1234763211);
 		long repRand = rand();
 		_simulation->setup("/home/apbennett/aiem/", args->getFifName(), "/home/apbennett/aiem", repRand);
-		RunStats->setFirstYear(_simulation->fif().nGet("FirstYear"));
+		RunStats->setFirstYear(_simulation->fif().root["Simulation"]["FirstYear"].asInt());
 	}
 	/* GIPL */
 	GIPL* gipl = new GIPL();

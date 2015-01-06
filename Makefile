@@ -24,7 +24,7 @@ INCLUDES= \
 	-I$(TEMDIR)/src/util \
 	-I$(TEMDIR)/src/vegetation
 LDFLAGS=-L/home/apbennett/lib -L$(TEMDIR) -L$(GIPLDIR)
-LIBS=-lFrescoAIEM -lPocoFoundation -lPocoXML -lPocoNet -lgdal -lTEM -lgipl -lboost_system -lboost_filesystem -lboost_program_options
+LIBS=-lFrescoAIEM -lPocoFoundation -lPocoXML -lPocoNet -lgdal -lTEM -lgipl -lboost_system -lboost_filesystem -lboost_program_options -ljsoncpp
 EXEC=aiem
 SRC=$(ALFDIR)/src/StatArray.cpp $(ALFDIR)/src/StatFile.cpp src/aiem.cpp src/CoupledData.cpp src/ArgHandler.cpp src/main.cpp
 all:
