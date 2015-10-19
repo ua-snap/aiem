@@ -4,6 +4,7 @@
 #include <sstream>
 #include <ogr_geometry.h>
 #include "CoupledData.h"
+#include "jsoncpp/json/json.h"
 
 class AIEM {
 	public:
