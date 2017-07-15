@@ -1,7 +1,7 @@
-#include "ArgHandler.h"
+#include "ArgParse.h"
 
 
-ArgHandler::ArgHandler(){
+ArgParse::ArgParse(){
 	fifFile = "default.fif";
 	temControlFile = "config/controlfile_site.txt";
 	boost::filesystem::path p = boost::filesystem::initial_path();
@@ -13,7 +13,7 @@ ArgHandler::ArgHandler(){
 	runTEM = true;
 	runGIPL = true;
 }
-void ArgHandler::parse(int argc, char** argv){
+void ArgParse::parse(int argc, char** argv){
 	desc.add_options()
 		("help,h", "produces helps message")
 		("version,v", "show the version information")
@@ -58,13 +58,13 @@ void ArgHandler::parse(int argc, char** argv){
 		endYear = varmap["end"].as<int>();
 	}
 }
-string ArgHandler::getFifName(){
+string ArgParse::getFifName(){
 	return fifFile;
 }
-string ArgHandler::getTEMControlName(){
+string ArgParse::getTEMControlName(){
 	return temControlFile;
 }
-void ArgHandler::showHelp(){
+void ArgParse::showHelp(){
 /**
  * Print out command help
  */

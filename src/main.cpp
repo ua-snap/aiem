@@ -1,9 +1,4 @@
-#include "ArgHandler.h"
-#include "aiem.h"
-#include "alfresco.h"
-#include "GIPL2.h"
-#include "dvmdostem.h"
-//#include <mpi.h>
+#include "main.h"
 
 StatArray* RunStats;
 AIEM* aiem;
@@ -17,7 +12,7 @@ int main(int argc, char* argv[]){
 	#endif
 	
 
-	ArgHandler* args = new ArgHandler();
+	ArgParse* args = new ArgParse();
 	aiem = new AIEM();
 	aiem->initialize();
 	args->parse(argc, argv);
@@ -34,7 +29,7 @@ int main(int argc, char* argv[]){
 		_simulation->setIsStopped(false);
 		srand(1234763211);
 		long repRand = rand();
-		_simulation->setup("/home/apbennett/aiem/", args->getFifName(), "/home/apbennett/aiem", repRand);
+		_simulation->setup("/home/UA/apbennett/aiem/", args->getFifName(), "/home/UA/apbennett/aiem", repRand);
 		RunStats->setFirstYear(_simulation->fif().root["Simulation"]["FirstYear"].asInt());
 	}
 	/* GIPL */
@@ -45,18 +40,24 @@ int main(int argc, char* argv[]){
 	}
 	time_t stime;
 	time_t etime;
-	Runner regner;
 	/* TEM SETUP */
+	//Runner regner;
+  	Json::Value controldata = temutil::parse_control_file(args->getTEMControlName());
+	ModelData modeldata(controldata);
+	Runner regner(modeldata, false, 0, 0);
+
+	regner.cohort.climate.prepare_daily_driving_data(0, "eq");
+
+          regner.cohort.initialize_internal_pointers(); // sets up lots of pointers to various things
+          regner.cohort.initialize_state_parameters();  // sets data based on values in cohort lookup
+
+
+
+	std::vector< std::vector<int> > run_mask = temutil::read_run_mask(modeldata.runmask_file);
 	if (args->getRunTEM()){
 
 		stime=time(0);
-		cout<<"run TEM stand-alone - start @"<<ctime(&stime)<<"\n";
-
-		regner.initInput(args->getTEMControlName(), "regner2");
-                regner.initOutput();
-                regner.setupData();
-                regner.setupIDs();
-		regner.runmode3();
+		cout << "run TEM stand-alone - start @" << ctime(&stime) << "\n";
 	}
 	/* Main Control Loop */
 	for (int i = args->getStartYear(); i <= args->getEndYear(); i++){
@@ -69,7 +70,9 @@ int main(int argc, char* argv[]){
 		#endif
 		for (int j = 0; j < 12; j++){
 			if (args->getRunTEM()){
-				regner.runSpatially(i - args->getStartYear(),j);
+				std::cout << j << std::endl;
+				regner.run_years(args->getStartYear(), args->getEndYear(), "eq-run");
+			//	regner.runSpatially(i - args->getStartYear(),j);
 				gipl->run();
 			}
 			#ifdef MPI_VERSION
@@ -96,5 +99,6 @@ int main(int argc, char* argv[]){
 	#ifdef MPI_VERSION
 	MPI::Finalize();
 	#endif
+	std::cout << "Model complete" << std::flush << std::endl;
 	return 0;
 }
