@@ -32,6 +32,6 @@ AIEM_LIBS=-lFrescoAIEM -lPocoFoundation -lPocoXML -lPocoNet -lgdal -lTEM -lgipl 
 EXEC=aiem
 SRC=$(ALFDIR)/src/StatArray.cpp $(ALFDIR)/src/StatFile.cpp src/aiem.cpp src/CoupledData.cpp src/ArgParse.cpp src/main.cpp
 all:
-	$(CC) $(INCLUDES) $(SRC) -o $(EXEC) $(AIEM_LDFLAGS) $(AIEM_LIBS) $(LDFLAGS) $(LIBS)
+	$(CC) $(CXXFLAGS) $(INCLUDES) $(SRC) -o $(EXEC) $(AIEM_LDFLAGS) $(AIEM_LIBS) $(LDFLAGS) $(LIBS)
 clean:
 	rm aiem
