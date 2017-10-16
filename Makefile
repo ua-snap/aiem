@@ -1,8 +1,8 @@
 CC=g++
 #CC=mpicxx
-ALFDIR=/home/apbennett/alfresco
-GIPLDIR=/home/apbennett/gipl
-TEMDIR=/home/apbennett/dvm-dos-tem
+ALFDIR=alfresco
+GIPLDIR=gipl
+TEMDIR=dvm-dos-tem
 INCLUDES= \
 	-I./include \
 	-I./src \
