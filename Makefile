@@ -1,8 +1,8 @@
 CC=g++
 #CC=mpicxx
-ALFDIR=/home/UA/apbennett/alfresco
-GIPLDIR=/home/UA/apbennett/gipl
-TEMDIR=/home/UA/apbennett/dvm-dos-tem
+ALFDIR=alfresco
+GIPLDIR=gipl
+TEMDIR=dvm-dos-tem
 BOOST_LIBS=/home/UA/tcarman2/boost_1_55_0/stage/lib
 INCLUDES= \
 	-I./include \
