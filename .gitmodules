@@ -1,0 +1,9 @@
+[submodule "alfresco"]
+	path = alfresco
+	url = https://github.com/ua-snap/alfresco.git
+[submodule "dvm-dos-tem"]
+	path = dvm-dos-tem
+	url = https://github.com/ua-snap/dvm-dos-tem
+[submodule "gipl"]
+	path = gipl
+	url = https://github.com/ua-snap/gipl.git
