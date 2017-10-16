@@ -11,8 +11,6 @@ INCLUDES= \
 	-I$(ALFDIR)/include \
 	-I$(GIPLDIR) \
 	-I/usr/include/gdal \
-	-I/home/UA/apbennett/include/jsoncpp \
-	-I/home/UA/tcarman2/boost_1_55_0/ \
 	-I$(TEMDIR)/src \
 	-I$(TEMDIR)/include \
 	-I$(TEMDIR)/src/assembler \
@@ -28,12 +26,12 @@ INCLUDES= \
 	-I$(TEMDIR)/src/snowsoil \
 	-I$(TEMDIR)/src/util \
 	-I$(TEMDIR)/src/vegetation
-AIEM_LDFLAGS=-L/home/UA/apbennett/par-alf/lib -L$(BOOST_LIBS) -L$(TEMDIR) -L$(GIPLDIR)
+AIEM_LDFLAGS=-L$(BOOST_LIBS) -L$(TEMDIR) -L$(GIPLDIR)
 AIEM_LIBS=-lFrescoAIEM -lPocoFoundation -lPocoXML -lPocoNet -lgdal -lTEM -lgipl -lboost_system \
 	-lboost_filesystem -lboost_program_options -lboost_thread -lboost_log -lreadline -lpthread -ljsoncpp
 EXEC=aiem
 SRC=$(ALFDIR)/src/StatArray.cpp $(ALFDIR)/src/StatFile.cpp src/aiem.cpp src/CoupledData.cpp src/ArgParse.cpp src/main.cpp
 all:
-	$(CC) $(INCLUDES) $(SRC) -o $(EXEC) $(AIEM_LDFLAGS) $(AIEM_LIBS)
+	$(CC) $(INCLUDES) $(SRC) -o $(EXEC) $(AIEM_LDFLAGS) $(AIEM_LIBS) $(LDFLAGS) $(LIBS)
 clean:
 	rm aiem
